@@ -1,0 +1,113 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Flask Auth Example</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bulma/0.7.2/css/bulma.min.css"/>
+
+
+</head>
+<body>
+
+<section class="hero is-primary ">
+
+    <div class="hero-head">
+        <nav class="navbar">
+            <div class="container">
+
+                <div class="navbar-end">
+                    <a href="{{ url_for('main.index') }}" class="navbar-item">
+                        Home
+                    </a>
+                    {% if current_user.is_authenticated %}
+                    <a href="{{ url_for('main.profile') }}" class="navbar-item">
+                        Profile
+                    </a>
+                    {% endif %}
+                    {% if not current_user.is_authenticated %}
+                    <a href="{{ url_for('auth.login') }}" class="navbar-item">
+                        Login
+                    </a>
+                    <a href="{{ url_for('auth.signup') }}" class="navbar-item">
+                        Sign Up
+                    </a>
+                    {% endif %}
+                    {% if current_user.is_authenticated %}
+                    <a href="{{ url_for('auth.logout') }}" class="navbar-item">
+                        Logout
+                    </a>
+                    {% endif %}
+                </div>
+            </div>
+        </nav>
+    </div>
+
+    {% with messages = get_flashed_messages() %}
+    {% if messages %}
+    <ul class="notification">
+        {% for message in messages %}
+        <p align="center" style="color:green;">{{ message }}</p>
+        {% endfor %}
+    </ul>
+    {% endif %}
+    {% endwith %}
+    <div class="hero-body">
+        <div class="container has-text-centered">
+            {% block content %}
+
+            <div id="data-container">
+
+                {% if data %}
+                <p>{{data}}</p>
+                {% endif %}
+            </div>
+
+
+
+            {% endblock %}
+        </div>
+    </div>
+
+</section>
+
+
+<div class="column is-4 is-offset-4">
+
+
+    <h1 class="title">All files</h1>
+    <div class="box">
+        {% if list_files %}
+        {% for i in list_files %}
+
+        <p><a href="/details/{{i}}">{{i}} </a></p>
+
+        {% endfor %}
+
+        {% else %}
+        <p>No files uploaded</p>
+        {% endif %}
+
+
+    </div>
+
+    <h1 class="title">My uploaded files</h1>
+    <div class="box">
+        {% if my_files %}
+        {% for i in my_files %}
+        <p><a href="/delete_file/{{i.id}}">delete</a> {{i.path}}</p>
+        {% endfor %}
+        {% else %}
+        <p>No files uploaded</p>
+        {% endif %}
+
+    </div>
+
+</div>
+
+</body>
+
+
+
+</html>

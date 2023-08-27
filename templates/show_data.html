@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+
+    <script type="text/javascript"></script>
+</head>
+
+
+{% extends 'base.html' %}
+<body>
+
+<div class="hero-body">
+
+    <div class="container has-text-centered">
+
+        {% block content %}
+          <div class="box">
+               {% with messages = get_flashed_messages() %}
+    {% if messages %}
+    <ul class="notification">
+        {% for message in messages %}
+        <p align="center" style="color:green;">{{ message }}</p>
+        {% endfor %}
+    </ul>
+    {% endif %}
+    {% endwith %}
+        <form action="/details/{{ filename }}" method="POST">
+
+            <label  type="filter" name="filter">Filter data</label>
+            <input type="filter" name="filter">
+
+            <label  type="sort" name="sort">Sort</label>
+            <input type="sort" name="sort">
+            <input type="submit" value="Filter">
+        </form>
+    </div>
+        <div id="data-container">
+            <ul>
+                {% if data %}
+                {% for item in data %}
+                <li>{{ item }}</li>
+                {% endfor %}
+                {% endif %}
+            </ul>
+        </div>
+        <a class="pagination-previous" id="pagination-previous-btn" href="/details/{{ filename }}?page={{ page - 1 }}">Previous</a>
+        <a class="pagination-next" id="pagination-next-btn" href="/details/{{ filename }}?page={{ page + 1 }}">Next</a>
+        {% endblock %}
+    </div>
+
+</div>
+
+</body>
