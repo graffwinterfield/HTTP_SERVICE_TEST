@@ -14,4 +14,5 @@ Example of filter:
 data = {'EEID': 'E02387', 'Full Name': 'Emily Davis', 'Job Title': 'Sr. Manger', 'Department': 'IT', 'Business Unit': 'Research & Development', 'Gender': 'Female', 'Ethnicity': 'Black', 'Age': 55, 'Hire Date': '4/8/2016', 'Annual Salary': '$141,604 ', 'Bonus %': '15% ', 'Country': 'United States', 'City': 'Seattle', 'Exit Date': '10/16/2021'}
 {'EEID': 'E04105', 'Full Name': 'Theodore Dinh', 'Job Title': 'Technical Architect', 'Department': 'IT', 'Business Unit': 'Manufacturing', 'Gender': 'Male', 'Ethnicity': 'Asian', 'Age': 59, 'Hire Date': '11/29/1997', 'Annual Salary': '$99,975 ', 'Bonus %': '0% ', 'Country': 'China', 'City': 'Chongqing', 'Exit Date': nan}
 filter: <Full Name:Emily Davis> sort:<Department:IT>
+
 ![image](https://github.com/graffwinterfield/HTTP_SERVICE_TEST/assets/110451740/c2e926f3-2216-4e7b-a570-0470e2e1c6a7)
